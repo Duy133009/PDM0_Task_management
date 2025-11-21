@@ -33,11 +33,12 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
         description: '',
         status: initialStatus,
         priority: Priority.MEDIUM,
-        assignee_id: users[0]?.id || '',
+        assignee_id: users.length > 0 ? users[0].id : undefined,
         start_date: new Date().toISOString().split('T')[0],
         due_date: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
         estimated_time: 4,
-        tags: []
+        tags: [],
+        project_id: undefined
       });
       setTagInput('');
     }
@@ -59,6 +60,7 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
       due_date: newTask.due_date!,
       estimated_time: Number(newTask.estimated_time),
       tags: tags.length > 0 ? tags : ['general'],
+      project_id: newTask.project_id || undefined
     });
     onClose();
   };
@@ -81,7 +83,7 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
             <input
               type="text"
               required
-              value={newTask.title}
+              value={newTask.title || ''}
               onChange={e => setNewTask({ ...newTask, title: e.target.value })}
               placeholder="e.g., Update Landing Page"
               className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
@@ -117,12 +119,15 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
               <label className="block text-xs font-medium text-gray-400 mb-1">Assignee *</label>
               <select
                 required
-                value={newTask.assignee_id}
+                value={newTask.assignee_id || ''}
                 onChange={e => setNewTask({ ...newTask, assignee_id: e.target.value })}
                 className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
               >
-                <option value="" disabled>Select User</option>
-                {users.map(u => <option key={u.id} value={u.id}>{u.full_name}</option>)}
+                {users.length === 0 ? (
+                  <option value="" disabled>No users available</option>
+                ) : (
+                  users.map(u => <option key={u.id} value={u.id}>{u.full_name}</option>)
+                )}
               </select>
             </div>
             <div>
@@ -130,7 +135,7 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
               <input
                 type="number"
                 min="0"
-                value={newTask.estimated_time}
+                value={newTask.estimated_time || 0}
                 onChange={e => setNewTask({ ...newTask, estimated_time: Number(e.target.value) })}
                 className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
               />
@@ -142,7 +147,7 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
               <label className="block text-xs font-medium text-gray-400 mb-1">Start Date</label>
               <input
                 type="date"
-                value={newTask.start_date}
+                value={newTask.start_date || ''}
                 onChange={e => setNewTask({ ...newTask, start_date: e.target.value })}
                 className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
               />
@@ -151,7 +156,7 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
               <label className="block text-xs font-medium text-gray-400 mb-1">Due Date</label>
               <input
                 type="date"
-                value={newTask.due_date}
+                value={newTask.due_date || ''}
                 onChange={e => setNewTask({ ...newTask, due_date: e.target.value })}
                 className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
               />
@@ -179,7 +184,8 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 text-sm font-medium bg-primary-600 hover:bg-primary-500 text-white rounded-lg transition-colors"
+              disabled={!newTask.title || !newTask.assignee_id}
+              className="px-4 py-2 text-sm font-medium bg-primary-600 hover:bg-primary-500 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Create Task
             </button>
