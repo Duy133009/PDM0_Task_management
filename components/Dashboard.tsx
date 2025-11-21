@@ -84,7 +84,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ tasks, projects }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-gray-900 p-6 rounded-xl border border-gray-800">
           <h3 className="text-lg font-semibold text-white mb-6">Task Distribution</h3>
-          <div className="h-64 w-full">
+          <div style={{ width: '100%', height: '256px' }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data}>
                 <XAxis dataKey="name" stroke="#4b5563" fontSize={12} tickLine={false} axisLine={false} />
