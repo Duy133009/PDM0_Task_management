@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+```javascript
+import React, { useState, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './components/Dashboard';
 import { KanbanBoard } from './components/KanbanBoard';
@@ -7,11 +8,16 @@ import { ResourceView } from './components/ResourceView';
 import { AnalyticsView } from './components/AnalyticsView';
 import { TimeLogView } from './components/TimeLogView';
 import { CreateTaskModal } from './components/CreateTaskModal';
+import { Login } from './components/Login';
+import { supabase } from './services/supabaseClient';
 import { MOCK_TASKS, MOCK_USERS, MOCK_PROJECTS, MOCK_TIME_ENTRIES } from './constants';
 import { TimeEntry, Task, TaskStatus } from './types';
-import { Plus } from 'lucide-react';
+import { Plus, LogOut } from 'lucide-react';
 
 const App: React.FC = () => {
+  const [session, setSession] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
   const [currentView, setCurrentView] = useState('dashboard');
   const [tasks, setTasks] = useState(MOCK_TASKS);
   const [timeEntries, setTimeEntries] = useState(MOCK_TIME_ENTRIES);
@@ -19,6 +25,21 @@ const App: React.FC = () => {
   // Global Modal State
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [taskModalStatus, setTaskModalStatus] = useState<TaskStatus>(TaskStatus.TODO);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const handleAddTimeEntry = (entry: Omit<TimeEntry, 'id'>) => {
     const newEntry: TimeEntry = {
@@ -39,6 +60,10 @@ const App: React.FC = () => {
   const openCreateTaskModal = (status: TaskStatus = TaskStatus.TODO) => {
     setTaskModalStatus(status);
     setIsTaskModalOpen(true);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
   };
 
   const renderView = () => {
@@ -66,6 +91,14 @@ const App: React.FC = () => {
         );
     }
   };
+
+  if (loading) {
+    return <div className="flex h-screen items-center justify-center bg-black text-white">Loading...</div>;
+  }
+
+  if (!session) {
+    return <Login onLoginSuccess={() => {}} />;
+  }
 
   return (
     <div className="flex h-screen bg-black overflow-hidden font-sans">
@@ -100,6 +133,14 @@ const App: React.FC = () => {
              <div className="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-white text-xs font-bold cursor-pointer hover:bg-gray-700">
                AC
              </div>
+             
+             <button 
+                onClick={handleLogout}
+                className="text-gray-400 hover:text-white transition-colors"
+                title="Logout"
+             >
+               <LogOut size={20} />
+             </button>
           </div>
         </div>
         
@@ -120,3 +161,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+```
