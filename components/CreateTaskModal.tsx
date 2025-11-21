@@ -1,0 +1,191 @@
+import React, { useState, useEffect } from 'react';
+import { Task, TaskStatus, Priority, User } from '../types';
+import { X } from 'lucide-react';
+
+interface CreateTaskModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (task: Omit<Task, 'id'>) => void;
+  users: User[];
+  initialStatus?: TaskStatus;
+}
+
+export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ 
+  isOpen, 
+  onClose, 
+  onSave, 
+  users,
+  initialStatus = TaskStatus.TODO
+}) => {
+  const [newTask, setNewTask] = useState<Partial<Task>>({
+    status: initialStatus,
+    priority: Priority.MEDIUM,
+    estimatedTime: 0,
+    tags: []
+  });
+  const [tagInput, setTagInput] = useState('');
+
+  // Reset form when modal opens or initialStatus changes
+  useEffect(() => {
+    if (isOpen) {
+      setNewTask({
+        title: '',
+        description: '',
+        status: initialStatus,
+        priority: Priority.MEDIUM,
+        assigneeId: users[0]?.id || '',
+        startDate: new Date().toISOString().split('T')[0],
+        dueDate: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
+        estimatedTime: 4,
+        tags: []
+      });
+      setTagInput('');
+    }
+  }, [isOpen, initialStatus, users]);
+
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTask.title || !newTask.assigneeId) return;
+
+    const tags = tagInput.split(',').map(t => t.trim()).filter(t => t !== '');
+    
+    onSave({
+      title: newTask.title!,
+      description: newTask.description || '',
+      status: newTask.status as TaskStatus,
+      priority: newTask.priority as Priority,
+      assigneeId: newTask.assigneeId!,
+      startDate: newTask.startDate!,
+      dueDate: newTask.dueDate!,
+      estimatedTime: Number(newTask.estimatedTime),
+      tags: tags.length > 0 ? tags : ['general'],
+    });
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
+      <div className="bg-gray-900 border border-gray-800 rounded-xl w-full max-w-lg shadow-2xl">
+        <div className="flex justify-between items-center p-6 border-b border-gray-800">
+          <h3 className="text-xl font-bold text-white">Create New Task</h3>
+          <button onClick={onClose} className="text-gray-500 hover:text-white">
+            <X size={20} />
+          </button>
+        </div>
+        
+        <form onSubmit={handleSave} className="p-6 space-y-4">
+          <div>
+            <label className="block text-xs font-medium text-gray-400 mb-1">Task Title *</label>
+            <input 
+              type="text" 
+              required
+              value={newTask.title}
+              onChange={e => setNewTask({...newTask, title: e.target.value})}
+              placeholder="e.g., Update Landing Page"
+              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
+              autoFocus
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-gray-400 mb-1">Status</label>
+              <select 
+                value={newTask.status}
+                onChange={e => setNewTask({...newTask, status: e.target.value as TaskStatus})}
+                className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
+              >
+                {Object.values(TaskStatus).map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-400 mb-1">Priority</label>
+              <select 
+                value={newTask.priority}
+                onChange={e => setNewTask({...newTask, priority: e.target.value as Priority})}
+                className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
+              >
+                {Object.values(Priority).map(p => <option key={p} value={p}>{p}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-gray-400 mb-1">Assignee *</label>
+              <select 
+                required
+                value={newTask.assigneeId}
+                onChange={e => setNewTask({...newTask, assigneeId: e.target.value})}
+                className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
+              >
+                <option value="" disabled>Select User</option>
+                {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-400 mb-1">Est. Hours</label>
+              <input 
+                type="number" 
+                min="0"
+                value={newTask.estimatedTime}
+                onChange={e => setNewTask({...newTask, estimatedTime: Number(e.target.value)})}
+                className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+             <div>
+              <label className="block text-xs font-medium text-gray-400 mb-1">Start Date</label>
+              <input 
+                type="date" 
+                value={newTask.startDate}
+                onChange={e => setNewTask({...newTask, startDate: e.target.value})}
+                className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
+              />
+             </div>
+             <div>
+              <label className="block text-xs font-medium text-gray-400 mb-1">Due Date</label>
+              <input 
+                type="date" 
+                value={newTask.dueDate}
+                onChange={e => setNewTask({...newTask, dueDate: e.target.value})}
+                className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
+              />
+             </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-gray-400 mb-1">Tags (comma separated)</label>
+            <input 
+              type="text" 
+              value={tagInput}
+              onChange={e => setTagInput(e.target.value)}
+              placeholder="design, backend, urgent"
+              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-primary-600 focus:outline-none transition-colors"
+            />
+          </div>
+
+          <div className="flex justify-end gap-3 pt-4 border-t border-gray-800 mt-4">
+            <button 
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit"
+              className="px-4 py-2 text-sm font-medium bg-primary-600 hover:bg-primary-500 text-white rounded-lg transition-colors"
+            >
+              Create Task
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
