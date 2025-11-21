@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Exclude cloned repo
+PDM0_Task_management/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
