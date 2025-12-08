@@ -29,6 +29,7 @@ export interface Task {
   assignee_id?: string;
   start_date: string; // ISO Date
   due_date: string;   // ISO Date
+  completed_at?: string; // ISO Date - when task was marked as Done
   estimated_time: number; // Hours
   tags: string[];
   dependencies?: string[]; // IDs of tasks this task depends on

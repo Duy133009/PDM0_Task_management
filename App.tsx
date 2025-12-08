@@ -6,6 +6,7 @@ import { GanttChart } from './components/GanttChart';
 import { ResourceView } from './components/ResourceView';
 import { AnalyticsView } from './components/AnalyticsView';
 import { TimeLogView } from './components/TimeLogView';
+import { SettingsView } from './components/SettingsView';
 import { CreateTaskModal } from './components/CreateTaskModal';
 import { Login } from './components/Login';
 import { supabase } from './services/supabaseClient';
@@ -22,6 +23,7 @@ const App: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>(MOCK_TIME_ENTRIES);
+  const [displayName, setDisplayName] = useState<string>('');
 
   // Modal state
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
@@ -33,11 +35,19 @@ const App: React.FC = () => {
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      if (session?.user) {
+        const name = session.user.user_metadata?.display_name || session.user.user_metadata?.full_name || session.user.email || '';
+        setDisplayName(name);
+      }
       setLoading(false);
     });
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      if (session?.user) {
+        const name = session.user.user_metadata?.display_name || session.user.user_metadata?.full_name || session.user.email || '';
+        setDisplayName(name);
+      }
     });
     return () => subscription.unsubscribe();
   }, []);
@@ -125,22 +135,31 @@ const App: React.FC = () => {
   };
 
   const handleUpdateTask = async (task: Task) => {
+    // Auto-set completed_at when task is marked as Done
+    const updatedTask = { ...task };
+    if (task.status === 'Done' && !task.completed_at) {
+      updatedTask.completed_at = new Date().toISOString();
+    } else if (task.status !== 'Done') {
+      updatedTask.completed_at = undefined;
+    }
+
     // Optimistic update
-    setTasks(prev => prev.map(t => (t.id === task.id ? task : t)));
+    setTasks(prev => prev.map(t => (t.id === task.id ? updatedTask : t)));
 
     const { error } = await supabase
       .from('tasks')
       .update({
-        title: task.title,
-        description: task.description,
-        status: task.status,
-        priority: task.priority,
-        assignee_id: task.assignee_id,
-        start_date: task.start_date,
-        due_date: task.due_date,
-        estimated_time: task.estimated_time,
-        tags: task.tags,
-        project_id: task.project_id?.trim() || null,
+        title: updatedTask.title,
+        description: updatedTask.description,
+        status: updatedTask.status,
+        priority: updatedTask.priority,
+        assignee_id: updatedTask.assignee_id,
+        start_date: updatedTask.start_date,
+        due_date: updatedTask.due_date,
+        completed_at: updatedTask.completed_at || null,
+        estimated_time: updatedTask.estimated_time,
+        tags: updatedTask.tags,
+        project_id: updatedTask.project_id?.trim() || null,
       })
       .eq('id', task.id);
 
@@ -212,15 +231,10 @@ const App: React.FC = () => {
         return <AnalyticsView tasks={tasks} timeEntries={timeEntries} />;
       case 'time':
         return <TimeLogView tasks={tasks} timeEntries={timeEntries} addTimeEntry={handleAddTimeEntry} />;
+      case 'settings':
+        return <SettingsView />;
       default:
-        return (
-          <div className="flex items-center justify-center h-full text-gray-500">
-            <div className="text-center">
-              <h2 className="text-xl font-bold mb-2">Settings</h2>
-              <p>Settings panel is under construction.</p>
-            </div>
-          </div>
-        );
+        return <SettingsView />;
     }
   };
 
@@ -233,15 +247,15 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen bg-black overflow-hidden font-sans">
+    <div className="flex h-screen bg-slate-950 overflow-hidden font-sans">
       <Sidebar currentView={currentView} setCurrentView={setCurrentView} />
-      <main className="flex-1 overflow-auto bg-gray-950 relative flex flex-col">
+      <main className="flex-1 overflow-auto bg-slate-950 relative flex flex-col">
         {/* Top bar */}
-        <div className="h-16 border-b border-gray-800 flex items-center justify-between px-8 bg-gray-950 sticky top-0 z-40 shrink-0">
+        <div className="h-16 border-b border-slate-800/50 flex items-center justify-between px-8 bg-slate-950/95 backdrop-blur-sm sticky top-0 z-40 shrink-0">
           <div className="flex items-center gap-4">
-            <div className="text-sm text-gray-400 hidden md:block">
-              <span className="text-gray-600">Workspace / </span>
-              <span className="text-white font-medium">InsightPM Platform</span>
+            <div className="text-sm text-slate-400 hidden md:block">
+              <span className="text-slate-600">Workspace / </span>
+              <span className="text-slate-200 font-medium">Taskflow</span>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -249,21 +263,21 @@ const App: React.FC = () => {
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-full bg-gray-900 border border-gray-700 rounded-full py-1.5 px-4 text-sm text-gray-300 focus:border-primary-600 focus:outline-none transition-colors"
+                className="w-full bg-slate-900 border border-slate-700/50 rounded-full py-1.5 px-4 text-sm text-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 focus:outline-none transition-all"
               />
             </div>
             {/* Global Add Task Button */}
             <button
               onClick={() => openCreateTaskModal()}
-              className="flex items-center gap-2 bg-primary-600 hover:bg-primary-500 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition-colors"
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all shadow-lg shadow-blue-600/20"
             >
               <Plus size={16} />
               <span className="hidden sm:inline">New Task</span>
             </button>
-            <div className="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-white text-xs font-bold cursor-pointer hover:bg-gray-700">
-              AC
+            <div className="px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700/50 flex items-center justify-center text-slate-200 text-xs font-bold cursor-pointer hover:bg-slate-700 transition-colors" title={displayName}>
+              {displayName ? displayName.slice(0, 12) : 'User'}
             </div>
-            <button onClick={handleLogout} className="text-gray-400 hover:text-white transition-colors" title="Logout">
+            <button onClick={handleLogout} className="text-slate-400 hover:text-slate-200 transition-colors" title="Logout">
               <LogOut size={20} />
             </button>
           </div>

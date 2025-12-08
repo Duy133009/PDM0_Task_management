@@ -242,7 +242,8 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
 
                 <div className="toggle-box">
                     <div className="toggle-panel toggle-left">
-                        <h1>Welcome Back!</h1>
+                        <h1>Welcome Back !</h1>
+                        <h2>Ready to manage your tasks 😊 </h2>
                         <p>Don't have an account?</p>
                         <button className="btn register-btn" onClick={() => setIsActive(true)}>Register</button>
                     </div>

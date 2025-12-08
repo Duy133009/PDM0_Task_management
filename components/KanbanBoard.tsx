@@ -36,7 +36,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({ tasks, users, onOpenCr
         <div>
           <div className="flex items-center gap-2">
             <h2 className="text-2xl font-bold text-white">Kanban Board</h2>
-            <span className="px-2 py-0.5 bg-gray-800 text-xs rounded-full text-gray-400">InsightPM</span>
+            <span className="px-2 py-0.5 bg-gray-800 text-xs rounded-full text-gray-400">Taskflow</span>
           </div>
           <p className="text-gray-400">{tasks.length} tasks across all stages</p>
         </div>

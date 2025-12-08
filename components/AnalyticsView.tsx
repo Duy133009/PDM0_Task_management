@@ -1,7 +1,7 @@
 import React from 'react';
 import { Task, TimeEntry } from '../types';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { ArrowUpRight, ArrowDownRight, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { Clock, CheckCircle, AlertTriangle, ListTodo } from 'lucide-react';
 
 interface AnalyticsViewProps {
   tasks: Task[];
@@ -9,97 +9,120 @@ interface AnalyticsViewProps {
 }
 
 export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ tasks, timeEntries }) => {
-  // Prepare data for Estimated vs Actual
-  const chartData = tasks.slice(0, 10).map(task => {
-    const actualHours = timeEntries
-      .filter(entry => entry.task_id === task.id)
-      .reduce((sum, entry) => sum + entry.hours, 0);
-
-    return {
-      name: task.title.substring(0, 15) + '...',
-      Estimated: task.estimated_time,
-      Actual: actualHours
-    };
+  // Group completed tasks by completed_at date
+  const completedByDate: Record<string, number> = {};
+  tasks.forEach(task => {
+    if (task.status === 'Done' && task.completed_at) {
+      // Extract just the date part (YYYY-MM-DD)
+      const date = task.completed_at.split('T')[0];
+      completedByDate[date] = (completedByDate[date] || 0) + 1;
+    }
   });
 
-  const totalEstimated = tasks.reduce((sum, t) => sum + t.estimated_time, 0);
-  const totalActual = timeEntries.reduce((sum, e) => sum + e.hours, 0);
-  const efficiency = totalActual > 0 ? Math.round((totalEstimated / totalActual) * 100) : 0;
+  // Convert to array and sort by date
+  const chartData = Object.entries(completedByDate)
+    .map(([date, count]) => ({
+      date: new Date(date).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' }),
+      fullDate: date,
+      Completed: count
+    }))
+    .sort((a, b) => new Date(a.fullDate).getTime() - new Date(b.fullDate).getTime())
+    .slice(-14); // Show last 14 days with data
+
+  // Calculate meaningful metrics
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter(t => t.status === 'Done').length;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const overdueTasks = tasks.filter(t => {
+    if (t.status === 'Done') return false;
+    if (!t.due_date) return false;
+    const dueDate = new Date(t.due_date);
+    return dueDate < today;
+  }).length;
+  const inProgressTasks = tasks.filter(t => t.status === 'In Progress').length;
 
   return (
     <div className="p-8">
       <header className="mb-8">
         <h2 className="text-2xl font-bold text-white">Analytics Dashboard</h2>
-        <p className="text-gray-400">Performance metrics and time tracking analysis</p>
+        <p className="text-gray-400">Performance metrics and task overview</p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <p className="text-gray-400 text-sm">Total Hours Logged</p>
-              <h3 className="text-3xl font-bold text-white mt-1">{totalActual}h</h3>
+              <p className="text-gray-400 text-sm">Total Tasks</p>
+              <h3 className="text-3xl font-bold text-white mt-1">{totalTasks}</h3>
             </div>
             <div className="p-2 bg-blue-500/10 rounded-lg">
-              <Clock className="text-blue-500" size={24} />
+              <ListTodo className="text-blue-500" size={24} />
             </div>
           </div>
-          <div className="flex items-center text-sm text-green-500">
-            <ArrowUpRight size={16} className="mr-1" />
-            <span>+12.5% from last week</span>
-          </div>
+          <p className="text-sm text-gray-500">All tasks in system</p>
         </div>
 
         <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <p className="text-gray-400 text-sm">Task Completion Rate</p>
-              <h3 className="text-3xl font-bold text-white mt-1">
-                {tasks.length > 0 ? Math.round((tasks.filter(t => t.status === 'Done').length / tasks.length) * 100) : 0}%
-              </h3>
+              <p className="text-gray-400 text-sm">Completed</p>
+              <h3 className="text-3xl font-bold text-white mt-1">{completedTasks}</h3>
             </div>
             <div className="p-2 bg-green-500/10 rounded-lg">
               <CheckCircle className="text-green-500" size={24} />
             </div>
           </div>
-          <div className="flex items-center text-sm text-green-500">
-            <ArrowUpRight size={16} className="mr-1" />
-            <span>+5.2% from last week</span>
-          </div>
+          <p className="text-sm text-green-500">
+            {totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0}% completion rate
+          </p>
         </div>
 
         <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <p className="text-gray-400 text-sm">Efficiency Score</p>
-              <h3 className="text-3xl font-bold text-white mt-1">{efficiency}%</h3>
+              <p className="text-gray-400 text-sm">In Progress</p>
+              <h3 className="text-3xl font-bold text-white mt-1">{inProgressTasks}</h3>
             </div>
-            <div className="p-2 bg-purple-500/10 rounded-lg">
-              <AlertTriangle className="text-purple-500" size={24} />
+            <div className="p-2 bg-yellow-500/10 rounded-lg">
+              <Clock className="text-yellow-500" size={24} />
             </div>
           </div>
-          <div className="flex items-center text-sm text-red-500">
-            <ArrowDownRight size={16} className="mr-1" />
-            <span>-2.1% from last week</span>
+          <p className="text-sm text-gray-500">Currently being worked on</p>
+        </div>
+
+        <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <p className="text-gray-400 text-sm">Overdue</p>
+              <h3 className={`text-3xl font-bold mt-1 ${overdueTasks > 0 ? 'text-red-400' : 'text-white'}`}>
+                {overdueTasks}
+              </h3>
+            </div>
+            <div className="p-2 bg-red-500/10 rounded-lg">
+              <AlertTriangle className="text-red-500" size={24} />
+            </div>
           </div>
+          <p className={`text-sm ${overdueTasks > 0 ? 'text-red-400' : 'text-gray-500'}`}>
+            {overdueTasks > 0 ? 'Needs attention!' : 'All on track'}
+          </p>
         </div>
       </div>
 
       <div className="bg-gray-900 p-6 rounded-xl border border-gray-800 h-[400px]">
-        <h3 className="text-lg font-semibold text-white mb-6">Estimated vs Actual Time</h3>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-            <XAxis dataKey="name" stroke="#9CA3AF" />
-            <YAxis stroke="#9CA3AF" />
+        <h3 className="text-lg font-semibold text-white mb-6">Tasks Completed by Date</h3>
+        <ResponsiveContainer width="100%" height="85%">
+          <BarChart data={chartData} layout="vertical">
+            <CartesianGrid strokeDasharray="3 3" stroke="#374151" horizontal={false} />
+            <YAxis dataKey="date" type="category" stroke="#FFFFFF" tick={{ fill: '#FFFFFF' }} width={60} />
+            <XAxis type="number" stroke="#FFFFFF" tick={{ fill: '#FFFFFF' }} allowDecimals={false} />
             <Tooltip
               contentStyle={{ backgroundColor: '#111827', borderColor: '#374151', color: '#F3F4F6' }}
               itemStyle={{ color: '#F3F4F6' }}
             />
             <Legend />
-            <Line type="monotone" dataKey="Estimated" stroke="#3B82F6" strokeWidth={2} />
-            <Line type="monotone" dataKey="Actual" stroke="#10B981" strokeWidth={2} />
-          </LineChart>
+            <Bar dataKey="Completed" fill="#10B981" radius={[0, 4, 4, 0]} />
+          </BarChart>
         </ResponsiveContainer>
       </div>
     </div>

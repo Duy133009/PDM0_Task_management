@@ -1,0 +1,70 @@
+BÁO CÁO TỔNG QUAN DỰ ÁN TASK MANAGER
+(Dành cho bài thuyết trình)
+
+Chào bạn, đây là bản báo cáo chi tiết về dự án Task Manager của mình. Mình đã tổng hợp lại các thông tin quan trọng để bạn dễ dàng nắm bắt và "chém" gió phần phật trong buổi thuyết trình nhé! 😉
+
+---
+
+1. CẤU TRÚC FILE VÀ MỤC ĐÍCH SỬ DỤNG
+Dưới đây là danh sách các file quan trọng và vai trò của chúng trong dự án:
+
+*   **App.tsx**: "Bộ não" của ứng dụng. File này quản lý toàn bộ trạng thái chính (state) như danh sách task, user, project, và session đăng nhập. Nó cũng điều hướng giữa các màn hình (Dashboard, Kanban, Gantt...) và xử lý logic lấy dữ liệu từ Backend.
+*   **index.tsx**: Điểm khởi chạy đầu tiên của ứng dụng React, nơi render `App` vào trong file HTML.
+*   **types.ts**: "Cuốn từ điển" định nghĩa các kiểu dữ liệu (data types). Ví dụ: Một `Task` gồm những trường nào (id, title, status...), `User` có gì. Đây là nơi thể hiện rõ cấu trúc dữ liệu của bạn.
+*   **constants.ts**: Chứa các hằng số, ví dụ như dữ liệu mẫu (mock data) dùng để test khi chưa có backend.
+*   **services/supabaseClient.ts**: "Cây cầu" kết nối Frontend với Backend (Supabase). Nó chứa thông tin cấu hình (URL, Key) để ứng dụng biết gọi API đi đâu.
+
+*   **Thư mục components/** (Chứa các mảnh ghép giao diện):
+    *   **Login.tsx**: Màn hình Đăng nhập/Đăng ký. Xử lý logic xác thực người dùng.
+    *   **Sidebar.tsx**: Thanh menu bên trái, giúp chuyển đổi qua lại giữa các view.
+    *   **Dashboard.tsx**: Màn hình chính, hiển thị tổng quan (thống kê, danh sách task).
+    *   **KanbanBoard.tsx**: Giao diện kéo thả task theo cột (Todo, In Progress, Done).
+    *   **GanttChart.tsx**: Biểu đồ Gantt để xem tiến độ dự án theo thời gian.
+    *   **CreateTaskModal.tsx / CreateProjectModal.tsx**: Các popup (modal) để nhập liệu tạo mới Task hoặc Project.
+    *   **AnalyticsView.tsx, ResourceView.tsx, TimeLogView.tsx**: Các màn hình báo cáo, thống kê chuyên sâu.
+
+---
+
+2. CHỨC NĂNG WEB VÀ LOGIC HOẠT ĐỘNG
+Web của mình là một hệ thống quản lý công việc (Task Management System) với các chức năng chính:
+
+*   **Quản lý Task (CRUD)**:
+    *   **Tạo/Sửa/Xóa**: Được thực hiện thông qua `CreateTaskModal.tsx` và các hàm `handleAddTask`, `handleUpdateTask`, `handleDeleteTask` trong `App.tsx`.
+    *   **Hiển thị**: Dữ liệu được hiển thị linh hoạt dưới nhiều dạng: Danh sách (Dashboard), Thẻ (Kanban), Biểu đồ (Gantt).
+*   **Quản lý Dự án & User**: Cho phép tạo dự án mới và gán task cho các thành viên (User).
+*   **Logic hoạt động**:
+    *   Khi web load, `App.tsx` sẽ gọi hàm `fetchData` để lấy toàn bộ dữ liệu từ Supabase về và lưu vào State.
+    *   Khi bạn thêm/sửa/xóa, ứng dụng dùng kỹ thuật **"Optimistic UI"** (Cập nhật giao diện trước cho mượt, sau đó mới gửi request lên server). Nếu server lỗi thì nó sẽ tự hoàn tác lại.
+
+---
+
+3. CHỨNG THỰC (AUTHENTICATION)
+Phần này rất quan trọng, bạn có thể nói sâu để lấy điểm nhé:
+
+*   **Công nghệ**: Sử dụng **Supabase Auth**.
+*   **File xử lý**: `Login.tsx` (giao diện), `App.tsx` (quản lý phiên làm việc - session).
+*   **Logic chứng thực**:
+    1.  **Đăng nhập**: Người dùng nhập Email/Pass tại `Login.tsx`. Hàm `supabase.auth.signInWithPassword` được gọi.
+    2.  **Token**: Nếu đúng, Supabase trả về một `session` chứa Access Token (JWT).
+    3.  **Lưu trạng thái**: `App.tsx` lắng nghe sự kiện `onAuthStateChange`. Khi có token, nó sẽ chuyển từ màn hình Login sang màn hình chính.
+    4.  **Bảo mật**: Mọi request gửi lên database sau đó đều tự động đính kèm Token này để Backend biết "ai đang gọi".
+*   **Chức năng phụ**: Có cả Đăng ký (`signUp`) và Quên mật khẩu (`resetPasswordForEmail`) - xịn xò như web thật!
+
+---
+
+4. ĐIỂM NỔI BẬT VỀ DATABASE MANAGEMENT PRINCIPLES
+Đây là phần để bạn "khoe" kiến thức môn Cơ sở dữ liệu nè:
+
+*   **Mô hình Quan hệ (Relational Model)**:
+    *   Dữ liệu không lưu lộn xộn mà được **Chuẩn hóa (Normalization)** thành các bảng riêng biệt: `users`, `tasks`, `projects`.
+    *   **Liên kết**: Các bảng liên kết với nhau qua **Khóa ngoại (Foreign Key)**. Ví dụ: Trong bảng `tasks` có cột `assignee_id` trỏ tới `id` của bảng `users`, và `project_id` trỏ tới bảng `projects`. Điều này đảm bảo tính nhất quán dữ liệu (Data Consistency).
+*   **CRUD Operations**: Ứng dụng thể hiện đầy đủ 4 thao tác cơ bản của Database: Create (Tạo), Read (Đọc), Update (Sửa), Delete (Xóa).
+*   **Tính toàn vẹn dữ liệu (Data Integrity)**:
+    *   Khi tạo Task, bắt buộc phải có các trường quan trọng (Title, Status).
+    *   Logic trong code đảm bảo kiểu dữ liệu đúng chuẩn (ví dụ: ngày tháng là ISO string, số giờ là number) nhờ TypeScript.
+*   **Row Level Security (RLS)** (Cái này là tính năng ngầm của Supabase, bạn có thể chém thêm):
+    *   Mặc dù code frontend không thấy rõ, nhưng Backend Supabase sử dụng RLS để đảm bảo User chỉ sửa được task của mình hoặc trong project mình tham gia (tùy rule bạn set). Đây là đỉnh cao của bảo mật database hiện đại.
+
+---
+
+Hy vọng bản report này giúp bạn tự tin thuyết trình nhé! Cần sửa hay bổ sung gì cứ ới mình. Chúc bạn 10 điểm! 🚀

@@ -1,10 +1,7 @@
 import { Task, User, TaskStatus, Priority, Project, TimeEntry } from './types';
 
 export const MOCK_USERS: User[] = [
-  { id: 'u1', name: 'Alex Chen', role: 'Product Manager', avatar: 'https://picsum.photos/id/1005/40/40', dailyCapacityHours: 8 },
-  { id: 'u2', name: 'Sam Taylor', role: 'Frontend Dev', avatar: 'https://picsum.photos/id/1012/40/40', dailyCapacityHours: 8 },
-  { id: 'u3', name: 'Morgan Kim', role: 'Backend Dev', avatar: 'https://picsum.photos/id/1025/40/40', dailyCapacityHours: 8 },
-  { id: 'u4', name: 'Jordan Lee', role: 'Designer', avatar: 'https://picsum.photos/id/1027/40/40', dailyCapacityHours: 6 },
+
 ];
 
 export const MOCK_TASKS: Task[] = [

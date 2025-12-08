@@ -1,5 +1,37 @@
 @import "tailwindcss";
 
+/* Premium Dark Theme Variables */
+:root {
+    --bg-deepest: #020617;
+    --bg-card: #0f172a;
+    --bg-elevated: #1e293b;
+    --border-subtle: #1e293b;
+    --border-hover: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --accent-primary: #3b82f6;
+    --accent-success: #22c55e;
+    --accent-warning: #eab308;
+    --accent-danger: #ef4444;
+}
+
+/* Base styles */
+body {
+    background-color: var(--bg-deepest);
+}
+
+/* Premium card shadows */
+.card-premium {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 
+                0 2px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
+.card-elevated {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4),
+                0 4px 6px -4px rgba(0, 0, 0, 0.3);
+}
+
 /* Custom scrollbar for dark theme */
 ::-webkit-scrollbar {
     width: 8px;
@@ -7,14 +39,24 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #111827;
+    background: var(--bg-deepest);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #374151;
+    background: #334155;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #4b5563;
+    background: #475569;
+}
+
+/* Animation */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out;
 }
