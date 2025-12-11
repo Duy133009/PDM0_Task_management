@@ -83,7 +83,7 @@ export const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
                         <label className="block text-sm font-medium text-gray-300 mb-2">Status</label>
                         <select
                             value={newProject.status || 'Active'}
-                            onChange={(e) => setNewProject({ ...newProject, status: e.target.value })}
+                            onChange={(e) => setNewProject({ ...newProject, status: e.target.value as 'Active' | 'On Hold' | 'Completed' })}
                             className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:border-primary-600 focus:outline-none"
                         >
                             <option value="Active">Active</option>

@@ -1,0 +1,2633 @@
+{
+  "diagramType": 1,
+  "data": {
+    "nodes": [
+      {
+        "id": "users-entity",
+        "type": "Entity",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "data": {
+          "label": "USERS",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-id",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-email",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": -120
+        },
+        "data": {
+          "label": "email TEXT (UNIQUE)",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-username",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": -120
+        },
+        "data": {
+          "label": "username TEXT (UNIQUE)",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-password_hash",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 80
+        },
+        "data": {
+          "label": "password_hash TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-full_name",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 80
+        },
+        "data": {
+          "label": "full_name TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-created_at",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 120
+        },
+        "data": {
+          "label": "created_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-updated_at",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 120
+        },
+        "data": {
+          "label": "updated_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-last_login",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": 160
+        },
+        "data": {
+          "label": "last_login TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-google_id",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 200
+        },
+        "data": {
+          "label": "google_id TEXT (UNIQUE)",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-auth_provider",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 200
+        },
+        "data": {
+          "label": "auth_provider TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-avatar_url",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 240
+        },
+        "data": {
+          "label": "avatar_url TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-email_verified",
+        "parentId": "users-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 240
+        },
+        "data": {
+          "label": "email_verified BOOLEAN",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "profiles-entity",
+        "type": "Entity",
+        "position": {
+          "x": -400,
+          "y": 0
+        },
+        "data": {
+          "label": "PROFILES",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "profiles-id",
+        "parentId": "profiles-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "profiles-full_name",
+        "parentId": "profiles-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "full_name TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "profiles-avatar_url",
+        "parentId": "profiles-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "avatar_url TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "profiles-role",
+        "parentId": "profiles-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 80
+        },
+        "data": {
+          "label": "role TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "profiles-daily_capacity_hours",
+        "parentId": "profiles-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 80
+        },
+        "data": {
+          "label": "daily_capacity_hours INT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "profiles-updated_at",
+        "parentId": "profiles-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": 120
+        },
+        "data": {
+          "label": "updated_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "projects-entity",
+        "type": "Entity",
+        "position": {
+          "x": 600,
+          "y": 0
+        },
+        "data": {
+          "label": "PROJECTS",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "projects-id",
+        "parentId": "projects-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "projects-name",
+        "parentId": "projects-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "name TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "projects-description",
+        "parentId": "projects-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "description TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "projects-status",
+        "parentId": "projects-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 80
+        },
+        "data": {
+          "label": "status TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "projects-progress",
+        "parentId": "projects-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 80
+        },
+        "data": {
+          "label": "progress INT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "projects-created_at",
+        "parentId": "projects-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": 120
+        },
+        "data": {
+          "label": "created_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-entity",
+        "type": "Entity",
+        "position": {
+          "x": 300,
+          "y": -300
+        },
+        "data": {
+          "label": "TASKS",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-id",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-user_id",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": -120
+        },
+        "data": {
+          "label": "user_id (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-title",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": -120
+        },
+        "data": {
+          "label": "title TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-description",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 80
+        },
+        "data": {
+          "label": "description TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-status",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 80
+        },
+        "data": {
+          "label": "status TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-priority",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 120
+        },
+        "data": {
+          "label": "priority TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-due_date",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 120
+        },
+        "data": {
+          "label": "due_date TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-assigned_to",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 160
+        },
+        "data": {
+          "label": "assigned_to (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-project_id",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 160
+        },
+        "data": {
+          "label": "project_id (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-created_at",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 200
+        },
+        "data": {
+          "label": "created_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-updated_at",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 200
+        },
+        "data": {
+          "label": "updated_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-completed_at",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -150,
+          "y": 240
+        },
+        "data": {
+          "label": "completed_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-start_date",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 50,
+          "y": 240
+        },
+        "data": {
+          "label": "start_date TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-estimated_time",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": 280
+        },
+        "data": {
+          "label": "estimated_time TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-tags",
+        "parentId": "tasks-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": 320
+        },
+        "data": {
+          "label": "tags TEXT[]",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_sessions-entity",
+        "type": "Entity",
+        "position": {
+          "x": -400,
+          "y": 400
+        },
+        "data": {
+          "label": "USER_SESSIONS",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_sessions-id",
+        "parentId": "user_sessions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_sessions-user_id",
+        "parentId": "user_sessions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "user_id (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_sessions-token",
+        "parentId": "user_sessions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "token TEXT (UNIQUE)",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_sessions-expires_at",
+        "parentId": "user_sessions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 80
+        },
+        "data": {
+          "label": "expires_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_sessions-created_at",
+        "parentId": "user_sessions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 80
+        },
+        "data": {
+          "label": "created_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_sessions-ip_address",
+        "parentId": "user_sessions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 120
+        },
+        "data": {
+          "label": "ip_address TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_sessions-user_agent",
+        "parentId": "user_sessions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 120
+        },
+        "data": {
+          "label": "user_agent TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "notification_settings-entity",
+        "type": "Entity",
+        "position": {
+          "x": -200,
+          "y": 400
+        },
+        "data": {
+          "label": "NOTIFICATION_SETTINGS",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 180,
+          "height": 50
+        }
+      },
+      {
+        "id": "notification_settings-id",
+        "parentId": "notification_settings-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "notification_settings-user_id",
+        "parentId": "notification_settings-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "user_id (FK) UUID (UNIQUE)",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "notification_settings-email_notifications",
+        "parentId": "notification_settings-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "email_notifications BOOLEAN",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "notification_settings-reminder_before_hours",
+        "parentId": "notification_settings-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 80
+        },
+        "data": {
+          "label": "reminder_before_hours INT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "notification_settings-reminder_before_days",
+        "parentId": "notification_settings-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 80
+        },
+        "data": {
+          "label": "reminder_before_days INT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "notification_settings-created_at",
+        "parentId": "notification_settings-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 120
+        },
+        "data": {
+          "label": "created_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "notification_settings-updated_at",
+        "parentId": "notification_settings-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 120
+        },
+        "data": {
+          "label": "updated_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "email_logs-entity",
+        "type": "Entity",
+        "position": {
+          "x": 0,
+          "y": 400
+        },
+        "data": {
+          "label": "EMAIL_LOGS",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "email_logs-id",
+        "parentId": "email_logs-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "email_logs-user_id",
+        "parentId": "email_logs-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "user_id (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "email_logs-task_id",
+        "parentId": "email_logs-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "task_id (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "email_logs-email_type",
+        "parentId": "email_logs-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 80
+        },
+        "data": {
+          "label": "email_type TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "email_logs-sent_at",
+        "parentId": "email_logs-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 80
+        },
+        "data": {
+          "label": "sent_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "email_logs-status",
+        "parentId": "email_logs-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 120
+        },
+        "data": {
+          "label": "status TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "email_logs-error_message",
+        "parentId": "email_logs-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 120
+        },
+        "data": {
+          "label": "error_message TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-entity",
+        "type": "Entity",
+        "position": {
+          "x": 200,
+          "y": 400
+        },
+        "data": {
+          "label": "USER_MODULES",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 130,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-id",
+        "parentId": "user_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-user_id",
+        "parentId": "user_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "user_id (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-module_name",
+        "parentId": "user_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "module_name TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-module_key",
+        "parentId": "user_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 80
+        },
+        "data": {
+          "label": "module_key TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-is_enabled",
+        "parentId": "user_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 80
+        },
+        "data": {
+          "label": "is_enabled BOOLEAN",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-module_config",
+        "parentId": "user_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 120
+        },
+        "data": {
+          "label": "module_config JSONB",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-created_at",
+        "parentId": "user_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 120
+        },
+        "data": {
+          "label": "created_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "user_modules-updated_at",
+        "parentId": "user_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": 160
+        },
+        "data": {
+          "label": "updated_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-entity",
+        "type": "Entity",
+        "position": {
+          "x": 400,
+          "y": 400
+        },
+        "data": {
+          "label": "AVAILABLE_MODULES",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 160,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-id",
+        "parentId": "available_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-module_key",
+        "parentId": "available_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "module_key TEXT (UNIQUE)",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-module_name",
+        "parentId": "available_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "module_name TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-description",
+        "parentId": "available_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 80
+        },
+        "data": {
+          "label": "description TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-category",
+        "parentId": "available_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 80
+        },
+        "data": {
+          "label": "category TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-icon",
+        "parentId": "available_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": 120
+        },
+        "data": {
+          "label": "icon TEXT",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-is_active",
+        "parentId": "available_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": 120
+        },
+        "data": {
+          "label": "is_active BOOLEAN",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "available_modules-created_at",
+        "parentId": "available_modules-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": 160
+        },
+        "data": {
+          "label": "created_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 140,
+          "height": 50
+        }
+      },
+      {
+        "id": "task_subscriptions-entity",
+        "type": "Entity",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "data": {
+          "label": "TASK_SUBSCRIPTIONS",
+          "type": "Associative",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 180,
+          "height": 50
+        }
+      },
+      {
+        "id": "task_subscriptions-id",
+        "parentId": "task_subscriptions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "id (PK) UUID",
+          "types": ["Key"],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "task_subscriptions-task_id",
+        "parentId": "task_subscriptions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "task_id (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "task_subscriptions-user_id",
+        "parentId": "task_subscriptions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "user_id (FK) UUID",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "task_subscriptions-subscribed_at",
+        "parentId": "task_subscriptions-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": 80
+        },
+        "data": {
+          "label": "subscribed_at TIMESTAMPTZ",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 120,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-tasks-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 150,
+          "y": -150
+        },
+        "data": {
+          "label": "Owns",
+          "sourceEntityDetails": {
+            "id": "users-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "tasks-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-assigned-tasks-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 150,
+          "y": -100
+        },
+        "data": {
+          "label": "Assigned_To",
+          "sourceEntityDetails": {
+            "id": "users-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "tasks-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "projects-tasks-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 450,
+          "y": -150
+        },
+        "data": {
+          "label": "Contains",
+          "sourceEntityDetails": {
+            "id": "projects-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "tasks-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-sessions-rel",
+        "type": "Relationship",
+        "position": {
+          "x": -200,
+          "y": 200
+        },
+        "data": {
+          "label": "Has_Session",
+          "sourceEntityDetails": {
+            "id": "users-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "user_sessions-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-notification_settings-rel",
+        "type": "Relationship",
+        "position": {
+          "x": -100,
+          "y": 200
+        },
+        "data": {
+          "label": "Has_Notification_Settings",
+          "sourceEntityDetails": {
+            "id": "users-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "notification_settings-entity",
+            "maxCardinality": "One"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-email_logs-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "data": {
+          "label": "Receives_Email",
+          "sourceEntityDetails": {
+            "id": "users-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "email_logs-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-email_logs-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 150,
+          "y": 50
+        },
+        "data": {
+          "label": "Generates_Email",
+          "sourceEntityDetails": {
+            "id": "tasks-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "email_logs-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-user_modules-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 100,
+          "y": 200
+        },
+        "data": {
+          "label": "Has_Modules",
+          "sourceEntityDetails": {
+            "id": "users-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "user_modules-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "tasks-subscriptions-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 300,
+          "y": 50
+        },
+        "data": {
+          "label": "Subscribed_By",
+          "sourceEntityDetails": {
+            "id": "tasks-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "task_subscriptions-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "users-subscriptions-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 150,
+          "y": 200
+        },
+        "data": {
+          "label": "Subscribes_To",
+          "sourceEntityDetails": {
+            "id": "users-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "task_subscriptions-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "users-entity-users-id",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-id"
+      },
+      {
+        "id": "users-entity-users-email",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-email"
+      },
+      {
+        "id": "users-entity-users-username",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-username"
+      },
+      {
+        "id": "users-entity-users-password_hash",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-password_hash"
+      },
+      {
+        "id": "users-entity-users-full_name",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-full_name"
+      },
+      {
+        "id": "users-entity-users-created_at",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-created_at"
+      },
+      {
+        "id": "users-entity-users-updated_at",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-updated_at"
+      },
+      {
+        "id": "users-entity-users-last_login",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-last_login"
+      },
+      {
+        "id": "users-entity-users-google_id",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-google_id"
+      },
+      {
+        "id": "users-entity-users-auth_provider",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-auth_provider"
+      },
+      {
+        "id": "users-entity-users-avatar_url",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-avatar_url"
+      },
+      {
+        "id": "users-entity-users-email_verified",
+        "type": "Attribute",
+        "source": "users-entity",
+        "target": "users-email_verified"
+      },
+      {
+        "id": "profiles-entity-profiles-id",
+        "type": "Attribute",
+        "source": "profiles-entity",
+        "target": "profiles-id"
+      },
+      {
+        "id": "profiles-entity-profiles-full_name",
+        "type": "Attribute",
+        "source": "profiles-entity",
+        "target": "profiles-full_name"
+      },
+      {
+        "id": "profiles-entity-profiles-avatar_url",
+        "type": "Attribute",
+        "source": "profiles-entity",
+        "target": "profiles-avatar_url"
+      },
+      {
+        "id": "profiles-entity-profiles-role",
+        "type": "Attribute",
+        "source": "profiles-entity",
+        "target": "profiles-role"
+      },
+      {
+        "id": "profiles-entity-profiles-daily_capacity_hours",
+        "type": "Attribute",
+        "source": "profiles-entity",
+        "target": "profiles-daily_capacity_hours"
+      },
+      {
+        "id": "profiles-entity-profiles-updated_at",
+        "type": "Attribute",
+        "source": "profiles-entity",
+        "target": "profiles-updated_at"
+      },
+      {
+        "id": "projects-entity-projects-id",
+        "type": "Attribute",
+        "source": "projects-entity",
+        "target": "projects-id"
+      },
+      {
+        "id": "projects-entity-projects-name",
+        "type": "Attribute",
+        "source": "projects-entity",
+        "target": "projects-name"
+      },
+      {
+        "id": "projects-entity-projects-description",
+        "type": "Attribute",
+        "source": "projects-entity",
+        "target": "projects-description"
+      },
+      {
+        "id": "projects-entity-projects-status",
+        "type": "Attribute",
+        "source": "projects-entity",
+        "target": "projects-status"
+      },
+      {
+        "id": "projects-entity-projects-progress",
+        "type": "Attribute",
+        "source": "projects-entity",
+        "target": "projects-progress"
+      },
+      {
+        "id": "projects-entity-projects-created_at",
+        "type": "Attribute",
+        "source": "projects-entity",
+        "target": "projects-created_at"
+      },
+      {
+        "id": "tasks-entity-tasks-id",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-id"
+      },
+      {
+        "id": "tasks-entity-tasks-user_id",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-user_id"
+      },
+      {
+        "id": "tasks-entity-tasks-title",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-title"
+      },
+      {
+        "id": "tasks-entity-tasks-description",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-description"
+      },
+      {
+        "id": "tasks-entity-tasks-status",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-status"
+      },
+      {
+        "id": "tasks-entity-tasks-priority",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-priority"
+      },
+      {
+        "id": "tasks-entity-tasks-due_date",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-due_date"
+      },
+      {
+        "id": "tasks-entity-tasks-assigned_to",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-assigned_to"
+      },
+      {
+        "id": "tasks-entity-tasks-project_id",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-project_id"
+      },
+      {
+        "id": "tasks-entity-tasks-created_at",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-created_at"
+      },
+      {
+        "id": "tasks-entity-tasks-updated_at",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-updated_at"
+      },
+      {
+        "id": "tasks-entity-tasks-completed_at",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-completed_at"
+      },
+      {
+        "id": "tasks-entity-tasks-start_date",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-start_date"
+      },
+      {
+        "id": "tasks-entity-tasks-estimated_time",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-estimated_time"
+      },
+      {
+        "id": "tasks-entity-tasks-tags",
+        "type": "Attribute",
+        "source": "tasks-entity",
+        "target": "tasks-tags"
+      },
+      {
+        "id": "user_sessions-entity-user_sessions-id",
+        "type": "Attribute",
+        "source": "user_sessions-entity",
+        "target": "user_sessions-id"
+      },
+      {
+        "id": "user_sessions-entity-user_sessions-user_id",
+        "type": "Attribute",
+        "source": "user_sessions-entity",
+        "target": "user_sessions-user_id"
+      },
+      {
+        "id": "user_sessions-entity-user_sessions-token",
+        "type": "Attribute",
+        "source": "user_sessions-entity",
+        "target": "user_sessions-token"
+      },
+      {
+        "id": "user_sessions-entity-user_sessions-expires_at",
+        "type": "Attribute",
+        "source": "user_sessions-entity",
+        "target": "user_sessions-expires_at"
+      },
+      {
+        "id": "user_sessions-entity-user_sessions-created_at",
+        "type": "Attribute",
+        "source": "user_sessions-entity",
+        "target": "user_sessions-created_at"
+      },
+      {
+        "id": "user_sessions-entity-user_sessions-ip_address",
+        "type": "Attribute",
+        "source": "user_sessions-entity",
+        "target": "user_sessions-ip_address"
+      },
+      {
+        "id": "user_sessions-entity-user_sessions-user_agent",
+        "type": "Attribute",
+        "source": "user_sessions-entity",
+        "target": "user_sessions-user_agent"
+      },
+      {
+        "id": "notification_settings-entity-notification_settings-id",
+        "type": "Attribute",
+        "source": "notification_settings-entity",
+        "target": "notification_settings-id"
+      },
+      {
+        "id": "notification_settings-entity-notification_settings-user_id",
+        "type": "Attribute",
+        "source": "notification_settings-entity",
+        "target": "notification_settings-user_id"
+      },
+      {
+        "id": "notification_settings-entity-notification_settings-email_notifications",
+        "type": "Attribute",
+        "source": "notification_settings-entity",
+        "target": "notification_settings-email_notifications"
+      },
+      {
+        "id": "notification_settings-entity-notification_settings-reminder_before_hours",
+        "type": "Attribute",
+        "source": "notification_settings-entity",
+        "target": "notification_settings-reminder_before_hours"
+      },
+      {
+        "id": "notification_settings-entity-notification_settings-reminder_before_days",
+        "type": "Attribute",
+        "source": "notification_settings-entity",
+        "target": "notification_settings-reminder_before_days"
+      },
+      {
+        "id": "notification_settings-entity-notification_settings-created_at",
+        "type": "Attribute",
+        "source": "notification_settings-entity",
+        "target": "notification_settings-created_at"
+      },
+      {
+        "id": "notification_settings-entity-notification_settings-updated_at",
+        "type": "Attribute",
+        "source": "notification_settings-entity",
+        "target": "notification_settings-updated_at"
+      },
+      {
+        "id": "email_logs-entity-email_logs-id",
+        "type": "Attribute",
+        "source": "email_logs-entity",
+        "target": "email_logs-id"
+      },
+      {
+        "id": "email_logs-entity-email_logs-user_id",
+        "type": "Attribute",
+        "source": "email_logs-entity",
+        "target": "email_logs-user_id"
+      },
+      {
+        "id": "email_logs-entity-email_logs-task_id",
+        "type": "Attribute",
+        "source": "email_logs-entity",
+        "target": "email_logs-task_id"
+      },
+      {
+        "id": "email_logs-entity-email_logs-email_type",
+        "type": "Attribute",
+        "source": "email_logs-entity",
+        "target": "email_logs-email_type"
+      },
+      {
+        "id": "email_logs-entity-email_logs-sent_at",
+        "type": "Attribute",
+        "source": "email_logs-entity",
+        "target": "email_logs-sent_at"
+      },
+      {
+        "id": "email_logs-entity-email_logs-status",
+        "type": "Attribute",
+        "source": "email_logs-entity",
+        "target": "email_logs-status"
+      },
+      {
+        "id": "email_logs-entity-email_logs-error_message",
+        "type": "Attribute",
+        "source": "email_logs-entity",
+        "target": "email_logs-error_message"
+      },
+      {
+        "id": "user_modules-entity-user_modules-id",
+        "type": "Attribute",
+        "source": "user_modules-entity",
+        "target": "user_modules-id"
+      },
+      {
+        "id": "user_modules-entity-user_modules-user_id",
+        "type": "Attribute",
+        "source": "user_modules-entity",
+        "target": "user_modules-user_id"
+      },
+      {
+        "id": "user_modules-entity-user_modules-module_name",
+        "type": "Attribute",
+        "source": "user_modules-entity",
+        "target": "user_modules-module_name"
+      },
+      {
+        "id": "user_modules-entity-user_modules-module_key",
+        "type": "Attribute",
+        "source": "user_modules-entity",
+        "target": "user_modules-module_key"
+      },
+      {
+        "id": "user_modules-entity-user_modules-is_enabled",
+        "type": "Attribute",
+        "source": "user_modules-entity",
+        "target": "user_modules-is_enabled"
+      },
+      {
+        "id": "user_modules-entity-user_modules-module_config",
+        "type": "Attribute",
+        "source": "user_modules-entity",
+        "target": "user_modules-module_config"
+      },
+      {
+        "id": "user_modules-entity-user_modules-created_at",
+        "type": "Attribute",
+        "source": "user_modules-entity",
+        "target": "user_modules-created_at"
+      },
+      {
+        "id": "user_modules-entity-user_modules-updated_at",
+        "type": "Attribute",
+        "source": "user_modules-entity",
+        "target": "user_modules-updated_at"
+      },
+      {
+        "id": "available_modules-entity-available_modules-id",
+        "type": "Attribute",
+        "source": "available_modules-entity",
+        "target": "available_modules-id"
+      },
+      {
+        "id": "available_modules-entity-available_modules-module_key",
+        "type": "Attribute",
+        "source": "available_modules-entity",
+        "target": "available_modules-module_key"
+      },
+      {
+        "id": "available_modules-entity-available_modules-module_name",
+        "type": "Attribute",
+        "source": "available_modules-entity",
+        "target": "available_modules-module_name"
+      },
+      {
+        "id": "available_modules-entity-available_modules-description",
+        "type": "Attribute",
+        "source": "available_modules-entity",
+        "target": "available_modules-description"
+      },
+      {
+        "id": "available_modules-entity-available_modules-category",
+        "type": "Attribute",
+        "source": "available_modules-entity",
+        "target": "available_modules-category"
+      },
+      {
+        "id": "available_modules-entity-available_modules-icon",
+        "type": "Attribute",
+        "source": "available_modules-entity",
+        "target": "available_modules-icon"
+      },
+      {
+        "id": "available_modules-entity-available_modules-is_active",
+        "type": "Attribute",
+        "source": "available_modules-entity",
+        "target": "available_modules-is_active"
+      },
+      {
+        "id": "available_modules-entity-available_modules-created_at",
+        "type": "Attribute",
+        "source": "available_modules-entity",
+        "target": "available_modules-created_at"
+      },
+      {
+        "id": "task_subscriptions-entity-task_subscriptions-id",
+        "type": "Attribute",
+        "source": "task_subscriptions-entity",
+        "target": "task_subscriptions-id"
+      },
+      {
+        "id": "task_subscriptions-entity-task_subscriptions-task_id",
+        "type": "Attribute",
+        "source": "task_subscriptions-entity",
+        "target": "task_subscriptions-task_id"
+      },
+      {
+        "id": "task_subscriptions-entity-task_subscriptions-user_id",
+        "type": "Attribute",
+        "source": "task_subscriptions-entity",
+        "target": "task_subscriptions-user_id"
+      },
+      {
+        "id": "task_subscriptions-entity-task_subscriptions-subscribed_at",
+        "type": "Attribute",
+        "source": "task_subscriptions-entity",
+        "target": "task_subscriptions-subscribed_at"
+      },
+      {
+        "id": "users-owns",
+        "type": "Relationship",
+        "source": "users-tasks-rel",
+        "target": "users-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "tasks-owned-by",
+        "type": "Relationship",
+        "source": "users-tasks-rel",
+        "target": "tasks-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "users-assigned",
+        "type": "Relationship",
+        "source": "users-assigned-tasks-rel",
+        "target": "users-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "tasks-assigned-to-user",
+        "type": "Relationship",
+        "source": "users-assigned-tasks-rel",
+        "target": "tasks-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "projects-contains",
+        "type": "Relationship",
+        "source": "projects-tasks-rel",
+        "target": "projects-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "tasks-belongs-to-project",
+        "type": "Relationship",
+        "source": "projects-tasks-rel",
+        "target": "tasks-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "users-has-session",
+        "type": "Relationship",
+        "source": "users-sessions-rel",
+        "target": "users-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "sessions-belongs-to-user",
+        "type": "Relationship",
+        "source": "users-sessions-rel",
+        "target": "user_sessions-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "users-has-notification-settings",
+        "type": "Relationship",
+        "source": "users-notification_settings-rel",
+        "target": "users-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "notification-settings-belongs-to-user",
+        "type": "Relationship",
+        "source": "users-notification_settings-rel",
+        "target": "notification_settings-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "users-receives-email",
+        "type": "Relationship",
+        "source": "users-email_logs-rel",
+        "target": "users-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "email-logs-sent-to-user",
+        "type": "Relationship",
+        "source": "users-email_logs-rel",
+        "target": "email_logs-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "tasks-generates-email",
+        "type": "Relationship",
+        "source": "tasks-email_logs-rel",
+        "target": "tasks-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "email-logs-for-task",
+        "type": "Relationship",
+        "source": "tasks-email_logs-rel",
+        "target": "email_logs-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "users-has-modules",
+        "type": "Relationship",
+        "source": "users-user_modules-rel",
+        "target": "users-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "user-modules-belongs-to-user",
+        "type": "Relationship",
+        "source": "users-user_modules-rel",
+        "target": "user_modules-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "tasks-subscribed-by",
+        "type": "Relationship",
+        "source": "tasks-subscriptions-rel",
+        "target": "tasks-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "subscriptions-for-task",
+        "type": "Relationship",
+        "source": "tasks-subscriptions-rel",
+        "target": "task_subscriptions-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "users-subscribes-to",
+        "type": "Relationship",
+        "source": "users-subscriptions-rel",
+        "target": "users-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "subscriptions-by-user",
+        "type": "Relationship",
+        "source": "users-subscriptions-rel",
+        "target": "task_subscriptions-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      }
+    ],
+    "viewport": {
+      "x": 0,
+      "y": 0,
+      "zoom": 0.5
+    }
+  },
+  "name": "TASK_MANAGER_ERD",
+  "folder": {
+    "name": "Diagrams",
+    "folderType": 1,
+    "depth": 0,
+    "id": 83803
+  },
+  "id": 99709,
+  "updatedAtTimestamp": 1760170589
+}

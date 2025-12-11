@@ -1,0 +1,442 @@
+{
+  "diagramType": 1,
+  "data": {
+    "nodes": [
+      {
+        "id": "bar-entity",
+        "type": "Entity",
+        "position": {
+          "x": -400,
+          "y": 100
+        },
+        "data": {
+          "label": "BAR",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "bar-id",
+        "parentId": "bar-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "bar_id (PK)",
+          "types": [
+            "Key"
+          ],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "bar-name",
+        "parentId": "bar-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "bar_name",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "bar-location",
+        "parentId": "bar-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "location",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "bar-phone",
+        "parentId": "bar-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -80,
+          "y": 80
+        },
+        "data": {
+          "label": "phone",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "drinker-entity",
+        "type": "Entity",
+        "position": {
+          "x": 400,
+          "y": 100
+        },
+        "data": {
+          "label": "DRINKER",
+          "type": "Regular",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "drinker-id",
+        "parentId": "drinker-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -50,
+          "y": -80
+        },
+        "data": {
+          "label": "drinker_id (PK)",
+          "types": [
+            "Key"
+          ],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "drinker-name",
+        "parentId": "drinker-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "drinker_name",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "drinker-age",
+        "parentId": "drinker-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "age",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "drinker-address",
+        "parentId": "drinker-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -80,
+          "y": 80
+        },
+        "data": {
+          "label": "address",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "frequents-entity",
+        "type": "Entity",
+        "position": {
+          "x": 0,
+          "y": 100
+        },
+        "data": {
+          "label": "FREQUENTS",
+          "type": "Associative",
+          "isConnectable": false,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "frequents-drinker-id",
+        "parentId": "frequents-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -120,
+          "y": -120
+        },
+        "data": {
+          "label": "drinker_id (FK)",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "frequents-bar-id",
+        "parentId": "frequents-entity",
+        "type": "Attribute",
+        "position": {
+          "x": 20,
+          "y": -120
+        },
+        "data": {
+          "label": "bar_id (FK)",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "frequents-times-per-week",
+        "parentId": "frequents-entity",
+        "type": "Attribute",
+        "position": {
+          "x": -80,
+          "y": 80
+        },
+        "data": {
+          "label": "times_per_week",
+          "types": [],
+          "isSelected": false,
+          "isConnectable": false
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "bar-frequents-rel",
+        "type": "Relationship",
+        "position": {
+          "x": -200,
+          "y": 100
+        },
+        "data": {
+          "label": "Frequented_By",
+          "sourceEntityDetails": {
+            "id": "bar-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "frequents-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      },
+      {
+        "id": "drinker-frequents-rel",
+        "type": "Relationship",
+        "position": {
+          "x": 200,
+          "y": 100
+        },
+        "data": {
+          "label": "Frequents",
+          "sourceEntityDetails": {
+            "id": "drinker-entity",
+            "maxCardinality": "One"
+          },
+          "targetEntityDetails": {
+            "id": "frequents-entity",
+            "maxCardinality": "Many"
+          },
+          "isSelected": false,
+          "isConnectable": true
+        },
+        "measured": {
+          "width": 100,
+          "height": 50
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "bar-entity-bar-id",
+        "type": "Attribute",
+        "source": "bar-entity",
+        "target": "bar-id"
+      },
+      {
+        "id": "bar-entity-bar-name",
+        "type": "Attribute",
+        "source": "bar-entity",
+        "target": "bar-name"
+      },
+      {
+        "id": "bar-entity-bar-location",
+        "type": "Attribute",
+        "source": "bar-entity",
+        "target": "bar-location"
+      },
+      {
+        "id": "bar-entity-bar-phone",
+        "type": "Attribute",
+        "source": "bar-entity",
+        "target": "bar-phone"
+      },
+      {
+        "id": "drinker-entity-drinker-id",
+        "type": "Attribute",
+        "source": "drinker-entity",
+        "target": "drinker-id"
+      },
+      {
+        "id": "drinker-entity-drinker-name",
+        "type": "Attribute",
+        "source": "drinker-entity",
+        "target": "drinker-name"
+      },
+      {
+        "id": "drinker-entity-drinker-age",
+        "type": "Attribute",
+        "source": "drinker-entity",
+        "target": "drinker-age"
+      },
+      {
+        "id": "drinker-entity-drinker-address",
+        "type": "Attribute",
+        "source": "drinker-entity",
+        "target": "drinker-address"
+      },
+      {
+        "id": "frequents-entity-frequents-drinker-id",
+        "type": "Attribute",
+        "source": "frequents-entity",
+        "target": "frequents-drinker-id"
+      },
+      {
+        "id": "frequents-entity-frequents-bar-id",
+        "type": "Attribute",
+        "source": "frequents-entity",
+        "target": "frequents-bar-id"
+      },
+      {
+        "id": "frequents-entity-frequents-times-per-week",
+        "type": "Attribute",
+        "source": "frequents-entity",
+        "target": "frequents-times-per-week"
+      },
+      {
+        "id": "bar-frequented-by",
+        "type": "Relationship",
+        "source": "bar-frequents-rel",
+        "target": "bar-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "frequents-frequented-by",
+        "type": "Relationship",
+        "source": "bar-frequents-rel",
+        "target": "frequents-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      },
+      {
+        "id": "drinker-frequents",
+        "type": "Relationship",
+        "source": "drinker-frequents-rel",
+        "target": "drinker-entity",
+        "data": {
+          "maxCardinality": "One"
+        }
+      },
+      {
+        "id": "frequents-frequents",
+        "type": "Relationship",
+        "source": "drinker-frequents-rel",
+        "target": "frequents-entity",
+        "data": {
+          "maxCardinality": "Many"
+        }
+      }
+    ],
+    "viewport": {
+      "x": 400,
+      "y": 200,
+      "zoom": 0.8
+    }
+  },
+  "name": "LAB01_PDM_RELATIONAL_ALGEBRA",
+  "folder": {
+    "name": "Diagrams",
+    "folderType": 1,
+    "depth": 0,
+    "id": 83803
+  },
+  "id": 99708,
+  "updatedAtTimestamp": 1760170589
+}

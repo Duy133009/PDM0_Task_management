@@ -112,16 +112,25 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ tasks, timeEntries
       <div className="bg-gray-900 p-6 rounded-xl border border-gray-800 h-[400px]">
         <h3 className="text-lg font-semibold text-white mb-6">Tasks Completed by Date</h3>
         <ResponsiveContainer width="100%" height="85%">
-          <BarChart data={chartData} layout="vertical">
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" horizontal={false} />
-            <YAxis dataKey="date" type="category" stroke="#FFFFFF" tick={{ fill: '#FFFFFF' }} width={60} />
-            <XAxis type="number" stroke="#FFFFFF" tick={{ fill: '#FFFFFF' }} allowDecimals={false} />
+          <BarChart data={chartData} barSize={40}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#374151" vertical={false} />
+            <XAxis 
+              dataKey="date" 
+              stroke="#9CA3AF" 
+              tick={{ fill: '#E5E7EB', fontSize: 12 }}
+              label={{ value: 'Date', position: 'insideBottom', fill: '#9CA3AF', dy: 10, fontSize: 13 }}
+            />
+            <YAxis 
+              stroke="#9CA3AF" 
+              tick={{ fill: '#E5E7EB', fontSize: 12 }} 
+              allowDecimals={false}
+            />
             <Tooltip
+              cursor={{ fill: 'transparent' }}
               contentStyle={{ backgroundColor: '#111827', borderColor: '#374151', color: '#F3F4F6' }}
               itemStyle={{ color: '#F3F4F6' }}
             />
-            <Legend />
-            <Bar dataKey="Completed" fill="#10B981" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="Completed" fill="#10B981" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
